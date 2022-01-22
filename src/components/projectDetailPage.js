@@ -1,4 +1,4 @@
-import { Task } from '../components/Task.js';
+import { Task } from './Task.js';
 import data from "../data/data.json";
 import { useParams, Outlet} from "react-router-dom";
 

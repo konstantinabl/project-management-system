@@ -1,14 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export const Task = ({title, status}) => {
-    console.log(title, status)
+export const Task = ({title, status, projectName, clickable}) => {
+
+    let navigate = useNavigate();
+
+    const handleClick = (title) => {
+        navigate(`/project/${projectName}/${title}`)
+    }
     return (
       <>
        <div className="task">
             <table>
                 <tbody>
                     <tr>
-                        <td>{title}</td>
+                        <td onClick={() => handleClick(title) 
+                            ? clickable
+                            : undefined}>{title}</td>
                         <td>{status}</td>
                     </tr>
                 </tbody>
@@ -18,4 +26,3 @@ export const Task = ({title, status}) => {
     );
   };
   
-  export default Task

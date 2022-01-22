@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Project = ({name}) => {
+export const Project = ({name, tasks}) => {
     console.log(name)
     if (!name) return <div />;
     return (

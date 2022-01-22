@@ -15,6 +15,8 @@ export const ProjectDetailPage = () => {
                             <Task
                                 title={task.Title}
                                 status={task.Status}
+                                projectName={data.Name}
+                                clickable={true}
                             />
                         )
                     })

@@ -5,19 +5,10 @@ import {Header} from './Header.js';
 import {ProjectDetailPage} from './components/ProjectDetailPage.js';
 import {TaskDetailPage} from './components/TaskDetailPage.js';
 import data_json from "./data/data.json";
-import { useState, useEffect } from "react";
+import { useLocalStorage } from "./hooks/useLocalStorage.js";
 
 function App() {
-  const [data, setData] = useState(() => {
-    const saved = localStorage.getItem("data");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-
-
-  useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(data_json));
-  }, [data]);
+  const [data, setData] = useLocalStorage("data", data_json)
 
   return (
     <div className="App">

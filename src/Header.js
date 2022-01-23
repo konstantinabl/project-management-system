@@ -1,13 +1,21 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
-    return (
-      <>
-       <div className="header">
-            <h1>Project Management System</h1>
-        </div>
-      </>
-    );
-  };
-  
-  export default Header
+  let navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/")
+  }
+  return (
+    <>
+      <div className="header" onClick={() => {
+          handleClick()
+      }}>
+        <h1>Project Management System</h1>
+      </div>
+    </>
+  );
+};
+
+export default Header

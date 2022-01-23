@@ -55,11 +55,26 @@
   color: #10375c;
 }
 
-table {
+.main-page-table{
   display: flex;
+  border-collapse: separate;
+}
+
+.container {
+  padding-left: 3em;
+  padding-right: 3em;
+  margin-top: 3em;
+}
+
+table {
   justify-content: center;
+  border-collapse: collapse;
 }
 td {
   border: 1px solid gray;
   width: 30em;
+}
+
+h5 {
+  font-size: 15px;
 }

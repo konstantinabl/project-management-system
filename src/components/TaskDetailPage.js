@@ -1,10 +1,9 @@
 import { Task } from '../components/Task.js';
-import data from "../data/data.json";
-import { useParams, Outlet} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const TaskDetailPage = () => {
     const params = useParams();
-
+    let data = JSON.parse(localStorage.getItem("data"))
     return (
         <div className="container">
             {data.filter(data => data.Name == params.id).map((data) => {

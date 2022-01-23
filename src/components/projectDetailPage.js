@@ -1,11 +1,20 @@
 import { Task } from './Task.js';
-import data from "../data/data.json";
-import { useParams, Outlet} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const ProjectDetailPage = () => {
     const params = useParams();
+    let data = JSON.parse(localStorage.getItem("data"))
+    
     return (
         <div className="container">
+            <table>
+            <thead>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Task Status</th>
+                </tr>
+            </thead>
+            <tbody>
             {data.filter(data => data.Name == params.id).map((data) => {
                 const tasks = data.Backlog
                 console.log(tasks)
@@ -22,6 +31,8 @@ export const ProjectDetailPage = () => {
                     })
                 )
             })}
+            </tbody>
+            </table>
         </div>
     );
   

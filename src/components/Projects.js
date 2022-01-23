@@ -6,7 +6,7 @@ export const Projects = () => {
   let navigate = useNavigate();
 
   const handleClick = (name) => {
-    navigate(`/project/${name}`)
+    navigate(`/project/${name}`);
   }
   return (
     <>
@@ -14,7 +14,7 @@ export const Projects = () => {
         {data.map((data) => {
           return (
             <div key={data.Name}>
-              <table>
+              <table className="main-page-table">
                 <tbody>
                   <tr>
                     <td>

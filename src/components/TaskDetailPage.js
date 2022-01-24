@@ -1,26 +1,24 @@
 import { useParams } from "react-router-dom";
+import { TaskForm } from "./TaskForm.js"
+import { TaskDetails } from "./TaskDetails.js";
+import { useState } from "react";
 
-export const TaskDetailPage = () => {
+export const TaskDetailPage = ({data, setData}) => {
     const params = useParams();
-    let data = JSON.parse(localStorage.getItem("data"))
+    const [editMode, setEditMode] = useState(false)
     return (
         <div className="container">
-            {data.filter(data => data.Name == params.id).map((data) => {
-                const tasks = data.Backlog
+            {data.filter(data => data.Name == params.id).map((project) => {
+                const tasks = project.Backlog
                 return(
                     tasks.filter(task => task.Title == params.task_id).map((task) => {
                         return(
-                            <div className="task">
-                                <h3 className="task-title">{task.Title}</h3>
-                                <div className="task-details">
-                                    <div>Type: {task.Type}</div>
-                                    <div>Priority: {task.priority} </div>
-                                    <div>Status: {task.Status} </div>
-                                    <div>Estimate: {task.Estimate}</div>
-                                    <div>Assignee: {task.Assignee}</div>
-                                    <div>Created At: {task.CreatedAt}</div>
-                                    <div>Description: {task.Description}</div>
-                                </div>                      
+                            <div>
+                                {
+                                editMode
+                                ? <TaskForm task={task} setEditMode={setEditMode} data={data} setData={setData}/>
+                                : <TaskDetails task={task} setEditMode={setEditMode}/>
+                                }
                             </div>
                         )
                     })

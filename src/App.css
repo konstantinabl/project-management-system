@@ -161,6 +161,17 @@ label {
   font-weight: 200;
 }
 
+.back-button {
+  margin-bottom: 15px;
+  margin-left : 15px;
+  position: fixed;
+  bottom: 0;
+  left:0;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
 button[type="submit"],
 input[type="submit"] {
   background: #ec5990;

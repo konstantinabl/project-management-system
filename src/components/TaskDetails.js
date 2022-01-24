@@ -7,15 +7,15 @@ export const TaskDetails = ({ task, setEditMode }) => {
       <div className="task">
         <h3 className="task-title">{task.Title}</h3>
         <div className="task-details">
-          <div>Type: {task.Type}</div>
-          <div>Priority: {task.Priority} </div>
-          <div>Status: {task.Status} </div>
-          <div>Estimate: {task.Estimate}</div>
-          <div>Assignee: {task.Assignee}</div>
-          <div>Created At: {task.CreatedAt}</div>
-          <div>Description: {task.Description}</div>
+          <p>Type: {task.Type}</p>
+          <p>Priority: {task.Priority} </p>
+          <p>Status: {task.Status} </p>
+          <p>Estimate: {task.Estimate}</p>
+          <p>Assignee: {task.Assignee}</p>
+          <p>Created At: {task.CreatedAt}</p>
+          <p>Description: {task.Description}</p>
+          <button type="button" onClick={()=> setEditMode(true)}>Edit</button>
         </div>
-        <button type="button" onClick={()=> setEditMode(true)}>Edit</button>
       </div>
     </>
   );

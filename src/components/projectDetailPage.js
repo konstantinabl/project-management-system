@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 export const ProjectDetailPage = ({data, setData}) => {
     const params = useParams();
     const [keyword, setKeyword] = useState(null);
-    
     const currentProject = data.find(data => data.Name == params.id);
     const filteredTasks = currentProject.Backlog.filter(task => {
         if(!keyword) return task;
@@ -15,7 +14,7 @@ export const ProjectDetailPage = ({data, setData}) => {
 
     return (
         <div className="container">
-            <input value={keyword} onChange={e => setKeyword(e.target.value)}/>
+            <input type="text" placeholder="Search..." value={keyword} onChange={e => setKeyword(e.target.value)}/>
             <table className="project-detail-table">
             <thead>
                 <tr>
@@ -28,7 +27,7 @@ export const ProjectDetailPage = ({data, setData}) => {
                 <Task
                     title={task.Title}
                     status={task.Status}
-                    projectName={data.Name}
+                    projectName={currentProject.Name}
                     clickable={true}
                 />
             ))}

@@ -73,6 +73,12 @@ table {
 td {
   border: 1px solid gray;
   width: 30em;
+  border-radius: 25px;
+}
+
+.project-detail-table {
+  width: 50%;
+  margin: 0 auto;
 }
 
 h5 {

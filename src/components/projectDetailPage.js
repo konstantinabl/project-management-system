@@ -1,13 +1,12 @@
 import { Task } from './Task.js';
 import { useParams } from "react-router-dom";
 
-export const ProjectDetailPage = () => {
+export const ProjectDetailPage = ({data, setData}) => {
     const params = useParams();
-    let data = JSON.parse(localStorage.getItem("data"))
     
     return (
         <div className="container">
-            <table>
+            <table className="project-detail-table">
             <thead>
                 <tr>
                     <th>Task Name</th>
@@ -35,8 +34,4 @@ export const ProjectDetailPage = () => {
             </table>
         </div>
     );
-  
-
-
-//   return <Project project={project} />;
 };

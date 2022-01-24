@@ -213,7 +213,7 @@ button[type="button"]:hover {
 }
 
 
-input[type="text"] {
+input[type="text"] .search {
   text-transform: uppercase;
   border: none;
   margin-top: 10px;

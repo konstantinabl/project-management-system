@@ -14,7 +14,7 @@ export const ProjectDetailPage = ({data, setData}) => {
 
     return (
         <div className="container">
-            <input type="text" placeholder="Search..." value={keyword} onChange={e => setKeyword(e.target.value)}/>
+            <input type="text" className ="search" placeholder="Search..." value={keyword} onChange={e => setKeyword(e.target.value)}/>
             <table className="project-detail-table">
             <thead>
                 <tr>

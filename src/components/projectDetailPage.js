@@ -16,7 +16,6 @@ export const ProjectDetailPage = ({data, setData}) => {
             <tbody>
             {data.filter(data => data.Name == params.id).map((data) => {
                 const tasks = data.Backlog
-                console.log(tasks)
                 return(
                     tasks.map((task) => {
                         return(

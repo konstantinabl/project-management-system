@@ -2,7 +2,7 @@ import React from "react";
 import data from "../data/data.json";
 import { useNavigate } from "react-router-dom";
 
-export const Projects = () => {
+export const Projects = ({data}) => {
   let navigate = useNavigate();
 
   const handleClick = (name) => {

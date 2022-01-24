@@ -1,10 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { TaskForm } from "./TaskForm.js"
 import { TaskDetails } from "./TaskDetails.js";
 import { useState } from "react";
 
 export const TaskDetailPage = ({data, setData}) => {
+    const navigate = useNavigate();
     const params = useParams();
+    const handleClick = () => {
+        navigate(`/project/${params.id}`);
+      }
     const [editMode, setEditMode] = useState(false)
     return (
         <div className="container">
@@ -24,6 +28,7 @@ export const TaskDetailPage = ({data, setData}) => {
                     })
                 )
             })}
+            <button className="back-button" type="button" onClick={handleClick}>Back</button>
         </div>
     );
 };

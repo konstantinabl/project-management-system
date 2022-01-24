@@ -73,30 +73,30 @@ body {
   margin-top: 3em;
 }
 
-table {
+.main-page-table {
   justify-content: center;
-  border-collapse: collapse;
 }
 
-tr {
-  border: 25px;
+.project-detail-table {
+  justify-content: center;
+  border-collapse: collapse;
+  border: 1px solid white;
+  max-width: 800px;
+  display: inline-block;
 }
+
 
 th {
   color:white;
 }
 
 td {
-  border: 1px solid gray;
+  border: 1px solid white;
   width: 30em;
-  border-radius: 25px;
   color:white;
+  border-radius: 25px;
 }
 
-.project-detail-table {
-  width: 50%;
-  margin: 0 auto;
-}
 
 .task-details {
   border: 1px solid white;
@@ -206,4 +206,23 @@ button[type="button"] {
 
 button[type="button"]:hover {
   background: #bf1650;
+}
+
+.task-row {
+  cursor: pointer;
+}
+
+
+input[type="text"] {
+  text-transform: uppercase;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+  width: 500px;
+  display: inline-block;
+  height: 30px;
 }

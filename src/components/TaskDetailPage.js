@@ -9,6 +9,7 @@ export const TaskDetailPage = ({data, setData}) => {
     return (
         <div className="container">
             {data.filter(data => data.Name == params.id).map((project) => {
+                console.log("project", project)
                 const tasks = project.Backlog
                 return(
                     tasks.filter(task => task.Title == params.task_id).map((task) => {

@@ -11,7 +11,8 @@ export const Task = ({title, status, projectName, clickable}) => {
     return (
       <>
       <tr>
-          <td onClick={() => handleClick(title) 
+          <td className="task-row"
+            onClick={() => handleClick(title) 
               ? clickable
               : undefined}>{title}</td>
           <td>{status}</td>

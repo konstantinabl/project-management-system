@@ -32,7 +32,7 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
         criteriaMode: "all"
     });
     const handleInputChange = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         setTask((state) => ({
             ...state,
             [name]: value
@@ -43,8 +43,8 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
         data.filter(data => data.Name == params.id).map((project) => {
             project.Backlog = project.Backlog.map(element =>
                 element.Title == params.task_id
-                ? currentTask
-                : element)
+                    ? currentTask
+                    : element)
         })
 
         setData(data)
@@ -54,49 +54,72 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Title</label><br />
-                <input type='text' name="Title" {...register("Title", {required: "Please enter a title"})}
-                onChange={handleInputChange} /><br />
-                <label>Type</label><br />
-                <input type='text' name="Type" {...register("Type", {validate: value => ["Story","Bug"].includes(value) })}
-                onChange={handleInputChange}/><br />
-                {errors.Type && (<span role="alert">This input is not valid</span>)}
-                <label>Priority</label><br />
+                <label>Title</label>
+                <input type='text' name="Title"
+                    {...register("Title", { required: "Please enter a title" })}
+                    onChange={handleInputChange} />
+                <ErrorMessage errors={errors} name="Title"
+                    render={({ message }) => <p className="error">{message}</p>} />
+                <label>Type</label>
+                <input type='text' name="Type"
+                    {...register("Type", {
+                        required: "Type is required",
+                        validate: value => ["Story", "Bug"].includes(value) || "Invalid input" })}
+                    onChange={handleInputChange} />
+                <ErrorMessage errors={errors} name="Type"
+                    render={({ message }) => <p className="error">{message}</p>} />
+                <label>Priority</label>
                 <input type='text' name="Priority"
-                {...register("Priority", {validate: value => ["Low","Normal","High","Critical"].includes(value) })}
-                onChange={handleInputChange}/><br />
-                {errors.Priority && (<span role="alert">This input is not valid</span>)}
-                <label>Status</label><br />
+                    {...register("Priority", { validate: value => ["Low", "Normal", "High", "Critical"].includes(value) || "Invalid input" })}
+                    onChange={handleInputChange} />
+                <ErrorMessage errors={errors} name="Priority"
+                    render={({ message }) => <p className="error">{message}</p>} />
+                <label>Status</label>
                 <input type='text' name="Status"
-                {...register("Status", {validate: value => ["To Do","In Progress","Ready for Test","Done"].includes(value) })}
-                onChange={handleInputChange}/><br />
-                {errors.Status && (<span role="alert">This input is not valid</span>)}
-                <label>Estimate</label><br />
+                    {...register("Status", { 
+                        required: "Status is required",
+                        validate: value => ["To Do", "In Progress", "Ready for Test", "Done"].includes(value) || "Input is not valid" })}
+                    onChange={handleInputChange} />
+                <ErrorMessage errors={errors} name="Status"
+                    render={({ message }) => <p className="error">{message}</p>} />
+                <label>Estimate</label>
                 <input type='text' name="Estimate"
-                {...register("Estimate", {validate: {
-                    positive: number => parseInt(number) > 0
-                  }})}
-                defaultValue={task.Estimate}
-                onChange={handleInputChange}/><br />
-                {errors.Estimate && (<span role="alert">Please insert a positive number</span>)}
-                <label>Assignee</label><br />
+                    {...register("Estimate", {
+                        validate: {
+                            positive: number => parseInt(number) > 0 || "Please provide positive integer"
+                        }
+                    })}
+                    defaultValue={task.Estimate}
+                    onChange={handleInputChange} />
+                <ErrorMessage errors={errors} name="Estimate"
+                    render={({ message }) => <p className="error">{message}</p>} />
+                <label>Assignee</label>
                 <input type='text' name="Assignee"
-                {...register("Assignee", {required: true})}
-                defaultValue={task.Assignee} 
-                onChange={handleInputChange}/><br />
-                <label>Created at:</label><br />
+                    {...register("Assignee", { required: true })}
+                    defaultValue={task.Assignee}
+                    onChange={handleInputChange} />
+                <ErrorMessage errors={errors} name="Assignee"
+                    render={({ message }) => <p className="error">{message}</p>} />
+                <label>Created at:</label>
                 <input type='text' name="CreatedAt"
-                {...register("CreatedAt", {valueAsDate: true})}
-                defaultValue={task.CreatedAt} 
-                onChange={handleInputChange}/><br />
-                <label>Description</label><br />
+                    {...register("CreatedAt", { required: true,
+                        pattern: {value: /^([0-9]{4})-([0-1][0-9])-([0-3][0-9])\s([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])$/,
+                                  message: "Invalid date"}
+                    })}
+                    defaultValue={task.CreatedAt}
+                    onChange={handleInputChange} />
+                <ErrorMessage errors={errors} name="CreatedAt"
+                    render={({ message }) => <p className="error">{message}</p>} />
+                <label>Description</label>
                 <input type='text' name="Description"
-                {...register("Description", {required: true})}
-                defaultValue={task.Description}
-                onChange={handleInputChange}/><br />
-                <input type="submit"/>
+                    {...register("Description", { required: "Description is required" })}
+                    defaultValue={task.Description}
+                    onChange={handleInputChange} />
+                <ErrorMessage errors={errors} name="Description"
+                    render={({ message }) => <p className="error">{message}</p>} />
+                <input type="submit" />
             </form>
-        </> 
+        </>
 
     );
 };

@@ -6,18 +6,7 @@ import { ErrorMessage } from '@hookform/error-message';
 
 export const TaskForm = ({ task, setEditMode, data, setData }) => {
     const params = useParams();
-    const [currentTask, setTask] = useState(() => {
-        return {
-            Title: task.Title,
-            Type: task.Type,
-            Priority: task.Priority,
-            Status: task.Status,
-            Estimate: task.Estimate,
-            Assignee: task.Assignee,
-            CreatedAt: task.CreatedAt,
-            Description: task.Description
-        }
-    });
+
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
             Title: task.Title,
@@ -31,23 +20,18 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
         },
         criteriaMode: "all"
     });
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setTask((state) => ({
-            ...state,
-            [name]: value
-        }))
-    }
 
-    const onSubmit = (data) => {
-        data.filter(data => data.Name == params.id).map((project) => {
-            project.Backlog = project.Backlog.map(element =>
-                element.Title == params.task_id
-                    ? currentTask
-                    : element)
-        })
+    const onSubmit = (taskToSave) => {
+        console.log(taskToSave);
 
-        setData(data)
+        const projectIndex = data.findIndex(project => project.Name === params.id);
+        if(projectIndex < 0) return;
+        const taskIndex = data[projectIndex].Backlog.findIndex(task => task.Title === params.task_id);
+        if(taskIndex < 0) return;
+
+        data[projectIndex].Backlog[taskIndex] = taskToSave;
+
+        setData([...data]);
         setEditMode(false)
     }
 
@@ -57,7 +41,7 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
                 <label>Title</label>
                 <input type='text' name="Title"
                     {...register("Title", { required: "Please enter a title" })}
-                    onChange={handleInputChange} />
+                    />
                 <ErrorMessage errors={errors} name="Title"
                     render={({ message }) => <p className="error">{message}</p>} />
                 <label>Type</label>
@@ -65,13 +49,13 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
                     {...register("Type", {
                         required: "Type is required",
                         validate: value => ["Story", "Bug"].includes(value) || "Invalid input" })}
-                    onChange={handleInputChange} />
+                    />
                 <ErrorMessage errors={errors} name="Type"
                     render={({ message }) => <p className="error">{message}</p>} />
                 <label>Priority</label>
                 <input type='text' name="Priority"
                     {...register("Priority", { validate: value => ["Low", "Normal", "High", "Critical"].includes(value) || "Invalid input" })}
-                    onChange={handleInputChange} />
+                    />
                 <ErrorMessage errors={errors} name="Priority"
                     render={({ message }) => <p className="error">{message}</p>} />
                 <label>Status</label>
@@ -79,7 +63,7 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
                     {...register("Status", { 
                         required: "Status is required",
                         validate: value => ["To Do", "In Progress", "Ready for Test", "Done"].includes(value) || "Input is not valid" })}
-                    onChange={handleInputChange} />
+                    />
                 <ErrorMessage errors={errors} name="Status"
                     render={({ message }) => <p className="error">{message}</p>} />
                 <label>Estimate</label>
@@ -90,14 +74,14 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
                         }
                     })}
                     defaultValue={task.Estimate}
-                    onChange={handleInputChange} />
+                    />
                 <ErrorMessage errors={errors} name="Estimate"
                     render={({ message }) => <p className="error">{message}</p>} />
                 <label>Assignee</label>
                 <input type='text' name="Assignee"
                     {...register("Assignee", { required: true })}
                     defaultValue={task.Assignee}
-                    onChange={handleInputChange} />
+                    />
                 <ErrorMessage errors={errors} name="Assignee"
                     render={({ message }) => <p className="error">{message}</p>} />
                 <label>Created at:</label>
@@ -107,14 +91,14 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
                                   message: "Invalid date"}
                     })}
                     defaultValue={task.CreatedAt}
-                    onChange={handleInputChange} />
+                    />
                 <ErrorMessage errors={errors} name="CreatedAt"
                     render={({ message }) => <p className="error">{message}</p>} />
                 <label>Description</label>
                 <input type='text' name="Description"
-                    {...register("Description", { required: "Description is required" })}
+                    {...register("Description", { required: "Description is required", maxLength:{ value:200, message: "Description too long" }})}
                     defaultValue={task.Description}
-                    onChange={handleInputChange} />
+                    />
                 <ErrorMessage errors={errors} name="Description"
                     render={({ message }) => <p className="error">{message}</p>} />
                 <input type="submit" />

@@ -15,8 +15,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/project/:id" element={<ProjectDetailPage/>} />
-        <Route path="/project/:id/:task_id" element={<TaskDetailPage/>} />
+        <Route path="/project/:id" element={<ProjectDetailPage data={data} setData={setData}/> } />
+        <Route path="/project/:id/:task_id" element={<TaskDetailPage data={data} setData={setData}/>} />
       </Routes>
     </div>
   );

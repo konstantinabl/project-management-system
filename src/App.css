@@ -37,6 +37,12 @@
   }
 }
 
+body {
+  background: #0e101c;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
 
 .project-container {
   padding-left: 3em;
@@ -45,14 +51,15 @@
 }
 
 .header {
-  background-color: #f4e04d;
+  background-color: #0e101c;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #10375c;
+  color: white;
+  border-bottom: 1px solid rgb(79, 98, 148)
 }
 
 .main-page-table{
@@ -70,10 +77,20 @@ table {
   justify-content: center;
   border-collapse: collapse;
 }
+
+tr {
+  border: 25px;
+}
+
+th {
+  color:white;
+}
+
 td {
   border: 1px solid gray;
   width: 30em;
   border-radius: 25px;
+  color:white;
 }
 
 .project-detail-table {
@@ -81,6 +98,101 @@ td {
   margin: 0 auto;
 }
 
+.task-details {
+  border: 1px solid white;
+  border-radius: 25px;
+  width: fit-content;
+  display: inline-block;
+  background-color: ivory;
+}
+
+.task {
+  text-align: center;
+}
+
+h3 {
+  color: white;
+}
+
 h5 {
+  color:white;
   font-size: 15px;
+}
+
+p {
+  color:black;
+  text-align: left;
+  margin: 20px;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.error {
+  color: #bf1650;
+}
+
+.error::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+label {
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+button[type="submit"],
+input[type="submit"] {
+  background: #ec5990;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background: #bf1650;
+}
+
+button[type="button"] {
+  background: #ec5990;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 100;
+  letter-spacing: 5px;
+}
+
+button[type="button"]:hover {
+  background: #bf1650;
 }

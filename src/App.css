@@ -226,3 +226,7 @@ input[type="text"] .search {
   display: inline-block;
   height: 30px;
 }
+
+a {
+  text-decoration: none;
+}

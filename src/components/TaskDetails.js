@@ -1,12 +1,9 @@
 import React from "react";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 export const TaskDetails = ({ task, setEditMode }) => {
-  const navigate = useNavigate();
   const params = useParams();
-  const handleClick = () => {
-    navigate(`/project/${params.id}`);
-  }
+
   return (
     <>
       <div className="task">
@@ -22,7 +19,10 @@ export const TaskDetails = ({ task, setEditMode }) => {
           <button type="button" onClick={()=> setEditMode(true)}>Edit</button>
         </div>
       </div>
-      <button className="back-button" type="button" onClick={handleClick}>Back</button>
+      <Link to={"/project/" + params.id}>
+        <button className="back-button" type="button">Back
+        </button>
+      </Link> 
     </>
   );
 };

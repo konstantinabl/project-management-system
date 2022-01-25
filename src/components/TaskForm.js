@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
@@ -22,8 +21,6 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
     });
 
     const onSubmit = (taskToSave) => {
-        console.log(taskToSave);
-
         const projectIndex = data.findIndex(project => project.Name === params.id);
         if(projectIndex < 0) return;
         const taskIndex = data[projectIndex].Backlog.findIndex(task => task.Title === params.task_id);

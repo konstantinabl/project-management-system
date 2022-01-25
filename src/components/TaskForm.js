@@ -1,10 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 
 export const TaskForm = ({ task, setEditMode, data, setData }) => {
     const params = useParams();
+    let navigate = useNavigate();
 
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
@@ -29,7 +30,8 @@ export const TaskForm = ({ task, setEditMode, data, setData }) => {
         data[projectIndex].Backlog[taskIndex] = taskToSave;
 
         setData([...data]);
-        setEditMode(false)
+        setEditMode(false);
+        navigate(`/project/${params.id}/${taskToSave.Title}`)
     }
 
     return (
